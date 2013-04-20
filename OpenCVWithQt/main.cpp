@@ -1,6 +1,8 @@
 #include <opencv/cv.h>
 #include <opencv/highgui.h>
 
+// This is OpenCV Web Cam Capture solution.
+
 using namespace cv;
 
 void salt(Mat&, int);
