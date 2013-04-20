@@ -1,4 +1,4 @@
-__author__ = 'SKOR'
+__author__ = 'SKorolchuk'
 
 import sys
 
