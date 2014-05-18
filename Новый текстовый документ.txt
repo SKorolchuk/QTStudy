@@ -1,0 +1,121 @@
+ A(    
+      ON    #HEN                        //подгот. этап - нагрев вкл
+      O     #on                         //основная мигалка
+      )     
+      A     #EN
+      =     #HeaterOut
+
+      AN    #EN
+      R     #HeaterOut
+      R     C     20
++
+//если достигнута макс температура - вкл. цикл
+      A     #EN
+      A     #H
+      A     #L
+      S     #HEN
+//выход "достигнута макс темп 1 раз"
+      A     #HEN
+      =     #MAIN_BEGIN
++
+// Счет t2 t3
+      A     #EN
+      A     #Second
+      A     #L
+      AN    #H
+      CU    C     20
++
+//сброс счетчика t2 t3
+      A     #EN
+      A     #L
+      FP    #f1
+      O(    
+      A     #H
+      A     #EN
+      FN    #f2
+      )     
+      R     C     20
++
+      A     #EN
+      A     #H
+      FP    #F3
+      JCN   mfuc
+      L     C     20
+      L     2
+      /D    
+      INC   1
+      T     #Time2
+
+mfuc: NOP   0
++
+      A     #EN
+      A     #L
+      FN    #F4
+      JCN   mfuk
+      L     C     20
+      L     2
+      /D    
+      INC   1
+      T     #Time3
+
+mfuk: NOP   0
++
+      A(    
+      A     #enh
+      A     #Second
+      A     #on
+      CD    C     15
+      BLD   101
+      A     #on
+      FP    #f8
+      L     #WR2
+      S     C     15
+      NOP   0
+      NOP   0
+      NOP   0
+      A     C     15
+      )     
+      FN    #f5
+      R     #on
++
+      A(    
+      A     #enh
+      A     #Second
+      AN    #on
+      CD    C     16
+      BLD   101
+      A     #on
+      FN    #f7
+      L     #WR3
+      S     C     16
+      NOP   0
+      NOP   0
+      NOP   0
+      A     C     16
+      )     
+      FN    #f6
+      A     #enh
+      S     #on
++
+      A     #enh
+      FP    #f9
+      L     #WR2
+      S     C     15
+      S     #on
++
+      L     #Time2
+      ITB   
+      T     #WR2
+      NOP   0
++
+      L     #Time3
+      ITB   
+      T     #WR3
+      NOP   0
++
+      A     #enh
+      FN    #f10
+      R     #on
+      R     C     15
+      R     C     16
++
